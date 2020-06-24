@@ -15,7 +15,7 @@ from vgg import VGG
 class Style_transfer:
     def __init__(self, style, epoch, style_weight, content_weight, tv_weight, batch_size,
                  path="val2017", load=False):
-        self.style = style = Variable(style.repeat(batch_size, 1, 1, 1)).type(torch.FloatTensor)
+        self.style = Variable(style.repeat(batch_size, 1, 1, 1)).type(torch.FloatTensor)
         self.epoch = epoch
         self.style_weight = style_weight
         self.content_weight = content_weight
@@ -35,8 +35,7 @@ class Style_transfer:
 
     def load(self):
         self.style_net = Style_transfer_net()
-        # self.style_net.load_state_dict(torch.load("models/style_net.pkl"))
-        self.style_net = torch.load("models/mosaic.model")
+        self.style_net.load_state_dict(torch.load("models/style_net.pkl"))
 
     def save(self):
         torch.save(self.style_net.state_dict(), "models/style_mosaic.pkl")
